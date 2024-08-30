@@ -1,0 +1,57 @@
+---
+title: "rray"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+An R package to explore easy access to NetCDF data sources modeled after the super convenient [xarray](https://xarray.dev/). The desired outcomes are 
+
++ ease of exploration of NetCDF contents
+
++ ease of extracting to georeferenced objects (sf, stars, terra)
+
+
+
+# Requirements
+
++ [R v4.1+](https://www.r-project.org/)
++ [rlang](https://CRAN.R-project.org/package=rlang)
++ [ncdf4](https://CRAN.R-project.org/package=ncdf4)
++ [R6](https://CRAN.R-project.org/package=R6)
++ [sf](https://CRAN.R-project.org/package=sf)
++ [stars](https://CRAN.R-project.org/package=stars)
++ [tidync](https://CRAN.R-project.org/package=tidync)
++ [dplyr](https://CRAN.R-project.org/package=dplyr)
+
+# Installation
+
+```
+remotes::install_github("BigelowLab/rarr")
+```
+
+```{r}
+suppressPackageStartupMessages({
+  library(rray)
+  library(tidync)
+  library(stars)
+})
+
+url = oisst_example_url()
+```
+
+## Path 1: rolling up an R6 package
+
+```{r}
+X = Rarr$new(url)
+X
+```
+
+## Path 2: using tidync
+
+```{r}
+Y = tidync(url)
+Y
+```
